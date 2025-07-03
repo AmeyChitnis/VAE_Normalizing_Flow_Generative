@@ -27,7 +27,9 @@ class VAE(nn.Module):
         h3       = F.relu(self.fc3(z))
         mu_dec   = self.fc4_mu(h3)
         logvar_d = self.fc4_logvar(h3)
-        return mu_dec, logvar_d
+        recon_x = torch.sigmoid(self.fc4_mu(h3))
+        return recon_x  # Return a single tensor
+
 
     def forward(self, x):
         # x: [batch, input_dim]

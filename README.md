@@ -7,23 +7,6 @@ This repository demonstrates two foundational likelihood-based generative models
 
 ---
 
-## 📂 Project Structure
-
-```
-.
-├── data/               # Fashion‑MNIST dataset (auto‑downloaded)
-├── models/             # VAE and NF model scripts
-│   ├── vae.py          # VAE model & loss function
-│   └── nrm_flow.py     # AffineCoupling + NormalizingFlowModel
-├── scripts/            # Training scripts
-│   ├── train_vae.py    # Train & sample with VAE
-│   └── train_flow.py   # Train & sample with NF
-├── outputs/            # Output sample images
-├── Generative Models.ipynb  # 📓 Main interactive notebook
-└── README.md           # This file
-```
-
----
 
 ## ⚙️ Setup
 
@@ -61,13 +44,13 @@ This notebook uses the `models/` folder and walks through training, generating, 
 ```bash
 python scripts/train_vae.py
 ```
-Generates `outputs/vae_generated_samples.png`
+
 
 #### Normalizing Flow:
 ```bash
 python scripts/train_flow.py
 ```
-Generates `outputs/nf_generated_samples.png` and `outputs/fashionmnist_samples.png`
+
 
 ---
 
@@ -78,8 +61,8 @@ Generates `outputs/nf_generated_samples.png` and `outputs/fashionmnist_samples.p
 | ![](images/fashionmnist_samples.png) | ![](images/vae_generated_samples.png) | ![](images/nf__generated_samples.png) | ![](images/vae_and_flow_generated_samples.png) |
 
 - **VAE**: captures global structure well, but images are smoother and blurrier.
-- **NF (before fix)**: inconsistent and noisy due to latent mismatch or unbalanced flow design.
-- **NF (after fix)**: sharper but still may require tuning (more flows, normalization, etc.)
+- **NF**: inconsistent and noisy due to latent mismatch or unbalanced flow design.
+- **VAE + NF (after fix)**: still somewhat blurry like VAE, requires tuning (more flows, normalization, etc.)
 
 ---
 
@@ -90,16 +73,9 @@ Generates `outputs/nf_generated_samples.png` and `outputs/fashionmnist_samples.p
 - **Tips**:
   - Use alternating coupling parity and normalization layers for NF
   - Experiment with learning rates, schedule, and longer training
-  - Future work: Blend flows into VAE (e.g., Flow-VAE), or evaluate with FID
 
 ---
 
-## 🛠️ Future Enhancements
-
-- Add **ActNorm / BatchNorm** layers within NF  
-- Train deeper or more expressive flows  
-- Integrate evaluation metrics (FID, IS)  
-- Explore **conditional generation** or **latent interpolations**
 
 ---
 
